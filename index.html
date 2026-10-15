@@ -81,11 +81,11 @@
             gap: 12px;
             align-items: center;
             position: relative;
-            min-height: 200px;
+            min-height: 220px;
         }
 
         .age-btn {
-            width: 120px;
+            width: 140px;
         }
 
         /* Moving button dynamic positioning */
@@ -129,12 +129,12 @@
         <p id="error-msg" style="color: red; margin-top: 10px; font-size: 14px;" class="hidden">Incorrect password! Try again.</p>
     </div>
 
-    <!-- SCREEN 2: AGE SELECTION PAGE (Options: 18, 19, 20 with runaway effect) -->
+    <!-- SCREEN 2: SELECTION PAGE -->
     <div id="screen2" class="card hidden">
-        <h2>How old are you turning today? 🎂</h2>
+        <h2>Where did your journey begin? 🎂</h2>
         <div class="age-container" id="age-box">
-            <button class="age-btn" onclick="wrongAge()">1</button>
-            <button class="age-btn" onclick="selectCorrectAge()">0.2</button>
+            <button class="age-btn" onclick="wrongAge()">🧬 Sperm</button>
+            <button class="age-btn" onclick="selectCorrectAge()">1 year</button>
             <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">20</button>
         </div>
     </div>
@@ -159,19 +159,19 @@
         <h2>Will you be my girlfriend? 🌹</h2>
         <div style="margin-top: 20px; display: flex; justify-content: space-around; position: relative; height: 60px;">
             <button onclick="sayYes()" style="position: absolute; left: 20px;">Yes! 💕</button>
-            <button id="no-btn" onmouseover="moveButtonNo(this)" onclick="moveButtonNo(this)" style="position: absolute; right: 60px;">No</button>
+            <button id="no-btn" onmouseover="moveButtonNo(this)" onclick="moveButtonNo(this)" style="position: absolute; right: 20px;">No</button>
         </div>
     </div>
 
     <script>
         // --- CONFIGURATION ---
-        const SECRET_PASSWORD = "Abhujubhuju"; // Your password
-        const RECIPIENT_NAME = "Lastborn";  // Her name
+        const SECRET_PASSWORD = "Abhujubhuju"; 
+        const RECIPIENT_NAME = "Last Born";  
 
         document.getElementById('display-name').innerText = RECIPIENT_NAME;
 
         window.onload = function() {
-            resetRunawayPosition(document.getElementById('run-btn-20'), 140);
+            resetRunawayPosition(document.getElementById('run-btn-20'), 150);
         };
 
         function resetRunawayPosition(btn, topPx) {
@@ -214,10 +214,10 @@
         }
 
         function wrongAge() {
-            alert("Nope! Try again.");
+            alert("Lol, not quite that option! Try again.");
         }
 
-        // Screen 2 to Screen 3 Transition (Correct Age 19)
+        // Correct Choice Flow ("1 year")
         function selectCorrectAge() {
             document.getElementById('screen2').classList.add('hidden');
             document.getElementById('screen3').classList.remove('hidden');
