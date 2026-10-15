@@ -22,12 +22,12 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             text-align: center;
-            width: 350px;
+            width: 380px;
             max-width: 90%;
             position: relative;
         }
@@ -40,6 +40,7 @@
         p {
             color: #555;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         input {
@@ -80,7 +81,7 @@
             gap: 12px;
             align-items: center;
             position: relative;
-            min-height: 220px;
+            min-height: 200px;
         }
 
         .age-btn {
@@ -108,57 +109,69 @@
                 transform: translateY(100vh) rotate(360deg);
             }
         }
+
+        .bible-verse {
+            font-style: italic;
+            color: #6c5ce7;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 
     <!-- SCREEN 1: LOGIN PAGE -->
     <div id="screen1" class="card">
-        <h2>Hello, <span id="display-name">Birthday Girl</span>! 👋</h2>
-        <p>Enter your secret password to unlock your card:</p>
+        <h2>Hello, <span id="display-name">Sarah</span>! 👋</h2>
+        <p>Enter your secret password to unlock your surprise:</p>
         <input type="password" id="pass-input" placeholder="Enter Password">
         <button onclick="checkPassword()">Unlock</button>
         <p id="error-msg" style="color: red; margin-top: 10px; font-size: 14px;" class="hidden">Incorrect password! Try again.</p>
     </div>
 
-    <!-- SCREEN 2: AGE SELECTION PAGE -->
+    <!-- SCREEN 2: AGE SELECTION PAGE (Options: 18, 19, 20 with runaway effect) -->
     <div id="screen2" class="card hidden">
         <h2>How old are you turning today? 🎂</h2>
         <div class="age-container" id="age-box">
             <button class="age-btn" onclick="wrongAge()">18</button>
             <button class="age-btn" onclick="selectCorrectAge()">19</button>
             <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">20</button>
-            <button class="age-btn runaway" id="run-btn-21" onmouseover="moveButton(this)" onclick="moveButton(this)">21</button>
         </div>
     </div>
 
-    <!-- SCREEN 3: BIRTHDAY WISH & ANIMATION PAGE -->
+    <!-- SCREEN 3: BIRTHDAY WISH & TIMELINE/BIBLE THEME -->
     <div id="screen3" class="card hidden">
         <h2>🎉 Happy Birthday! 🎉</h2>
-        <p>Wishing you the happiest birthday filled with love, laughter, and endless joy! You bring so much light into the world. ✨</p>
-        <button onclick="goToProposal()">Next 💖</button>
+        <p class="bible-verse">"Before I formed you in the womb I knew you, before you were born I set you apart." — Jeremiah 1:5</p>
+        <p>Celebrating your journey from your early days up to this wonderful milestone of life! God has blessed the world with your presence. ✨</p>
+        <button onclick="goToNextPhase()">Next 💖</button>
     </div>
 
-    <!-- SCREEN 4: THE QUESTION PAGE -->
+    <!-- SCREEN 4: AGE 21 CELEBRATION & POPS -->
     <div id="screen4" class="card hidden">
+        <h2>✨ Looking Forward to 21 & Beyond! ✨</h2>
+        <p>May every new year bring you closer to your dreams, filled with joy, grace, and endless celebrations! 🎈🎂</p>
+        <button onclick="goToProposal()">Continue 💕</button>
+    </div>
+
+    <!-- SCREEN 5: THE FINAL PROPOSAL PAGE -->
+    <div id="screen5" class="card hidden">
         <h2>Will you be my girlfriend? 🌹</h2>
-        <div style="margin-top: 20px; display: flex; justify-content: space-around;">
-            <button onclick="sayYes()">Yes! 💕</button>
-            <button id="no-btn" onmouseover="moveButton(this)" onclick="moveButton(this)">No</button>
+        <div style="margin-top: 20px; display: flex; justify-content: space-around; position: relative; height: 60px;">
+            <button onclick="sayYes()" style="position: absolute; left: 20px;">Yes! 💕</button>
+            <button id="no-btn" onmouseover="moveButtonNo(this)" onclick="moveButtonNo(this)" style="position: absolute; right: 20px;">No</button>
         </div>
     </div>
 
     <script>
         // --- CONFIGURATION ---
-        const SECRET_PASSWORD = "Abhujubhuju"; // Set your desired password here
-        const RECIPIENT_NAME = "Lastborn";  // Set her actual name here
+        const SECRET_PASSWORD = "1234"; // Your password
+        const RECIPIENT_NAME = "Sarah";  // Her name
 
         document.getElementById('display-name').innerText = RECIPIENT_NAME;
 
-        // Position initial runaway buttons inside screen 2
         window.onload = function() {
-            resetRunawayPosition(document.getElementById('run-btn-20'), 130);
-            resetRunawayPosition(document.getElementById('run-btn-21'), 180);
+            resetRunawayPosition(document.getElementById('run-btn-20'), 140);
         };
 
         function resetRunawayPosition(btn, topPx) {
@@ -178,7 +191,7 @@
             }
         }
 
-        // Screen 2: Dodge Logic for buttons 20 and 21
+        // Screen 2: Dodge Logic for button 20
         function moveButton(btn) {
             const container = document.getElementById('age-box');
             const maxX = container.clientWidth - btn.clientWidth;
@@ -192,31 +205,44 @@
             btn.style.transform = 'none';
         }
 
-        function wrongAge() {
-            alert("Nope, that's not your age!");
+        function moveButtonNo(btn) {
+            const maxX = window.innerWidth - 150;
+            const maxY = window.innerHeight - 100;
+            btn.style.position = 'fixed';
+            btn.style.left = Math.floor(Math.random() * maxX) + 'px';
+            btn.style.top = Math.floor(Math.random() * maxY) + 'px';
         }
 
-        // Screen 2 to Screen 3 Transition
+        function wrongAge() {
+            alert("Nope! Try again.");
+        }
+
+        // Screen 2 to Screen 3 Transition (Correct Age 19)
         function selectCorrectAge() {
             document.getElementById('screen2').classList.add('hidden');
             document.getElementById('screen3').classList.remove('hidden');
             triggerConfetti();
         }
 
-        // Screen 3 to Screen 4 Transition
-        function goToProposal() {
+        function goToNextPhase() {
             document.getElementById('screen3').classList.add('hidden');
             document.getElementById('screen4').classList.remove('hidden');
+            triggerConfetti();
+        }
+
+        function goToProposal() {
+            document.getElementById('screen4').classList.add('hidden');
+            document.getElementById('screen5').classList.remove('hidden');
         }
 
         function sayYes() {
-            alert(" You made my day! Happy Birthday! ❤️");
+            alert("💖 You made me the happiest! Happy Birthday! ❤️");
         }
 
-        // Simple Celebration Confetti Generator
+        // Confetti Animation Generator
         function triggerConfetti() {
-            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#2bcbba'];
-            for (let i = 0; i < 50; i++) {
+            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#2bcbba', '#ff6b81'];
+            for (let i = 0; i < 60; i++) {
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
                 confetti.style.left = Math.random() * 100 + 'vw';
