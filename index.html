@@ -27,7 +27,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             text-align: center;
-            width: 380px;
+            width: 400px;
             max-width: 90%;
             position: relative;
         }
@@ -35,6 +35,7 @@
         h2 {
             color: #d63384;
             margin-bottom: 15px;
+            font-size: 22px;
         }
 
         p {
@@ -63,6 +64,7 @@
             border-radius: 25px;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
+            margin: 5px;
         }
 
         button:hover {
@@ -133,7 +135,7 @@
     <div id="screen2" class="card hidden">
         <h2>Where did your journey begin? 🎂</h2>
         <div class="age-container" id="age-box">
-            <button class="age-btn" onclick="wrongAge()">unthinkable</button>
+            <button class="age-btn" onclick="wrongAge()">🧬 Sperm</button>
             <button class="age-btn" onclick="selectCorrectAge()">1 year</button>
             <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">20</button>
         </div>
@@ -147,19 +149,20 @@
         <button onclick="goToNextPhase()">Next 💖</button>
     </div>
 
-    <!-- SCREEN 4: AGE 21 CELEBRATION & POPS -->
+    <!-- SCREEN 4: CELEBRATION & POPS -->
     <div id="screen4" class="card hidden">
-        <h2>✨ Looking Forward to 21 & Beyond! ✨</h2>
-        <p>May every new year bring you closer to your dreams, filled with joy, grace, and endless celebrations! 🎈🎂</p>
-        <button onclick="goToProposal()">Continue 💕</button>
+        <h2>✨ Looking Forward to Great Things! ✨</h2>
+        <p>May every new year bring you closer to your biggest dreams, wrapped in endless joy, peace, and love! 🎈🎂</p>
+        <button onclick="goToFinalQuestion()">Continue 💕</button>
     </div>
 
-    <!-- SCREEN 5: THE FINAL PROPOSAL PAGE -->
+    <!-- SCREEN 5: FINAL FEEL-GOOD QUESTION -->
     <div id="screen5" class="card hidden">
-        <h2>Will you be my girlfriend? 🌹</h2>
-        <div style="margin-top: 20px; display: flex; justify-content: space-around; position: relative; height: 60px;">
-            <button onclick="sayYes()" style="position: absolute; left: 20px;">Yes! 💕</button>
-            <button id="no-btn" onmouseover="moveButtonNo(this)" onclick="moveButtonNo(this)" style="position: absolute; right: 20px;">No</button>
+        <h2>🌟 One Quick Question... 🌟</h2>
+        <p>Are you ready to make this year the most amazing, joyful, and successful year of your life yet? 💫</p>
+        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+            <button onclick="sayYes()">Yes, absolutely! 🚀</button>
+            <button onclick="sayYes()">Ready & excited! ✨</button>
         </div>
     </div>
 
@@ -205,14 +208,6 @@
             btn.style.transform = 'none';
         }
 
-        function moveButtonNo(btn) {
-            const maxX = window.innerWidth - 150;
-            const maxY = window.innerHeight - 100;
-            btn.style.position = 'fixed';
-            btn.style.left = Math.floor(Math.random() * maxX) + 'px';
-            btn.style.top = Math.floor(Math.random() * maxY) + 'px';
-        }
-
         function wrongAge() {
             alert("Lol, not quite that option! Try again.");
         }
@@ -230,13 +225,13 @@
             triggerConfetti();
         }
 
-        function goToProposal() {
+        function goToFinalQuestion() {
             document.getElementById('screen4').classList.add('hidden');
             document.getElementById('screen5').classList.remove('hidden');
         }
 
         function sayYes() {
-            alert("💖 You made me the happiest! Happy Birthday! ❤️");
+            alert("🌟 That's the spirit! Wishing you all the success, happiness, and blessings in the world. Happy Birthday! 🎉❤️");
         }
 
         // Confetti Animation Generator
