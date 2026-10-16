@@ -1,82 +1,112 @@
-9<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Birthday Wish</title>
+    <title>Ultimate Birthday VIP Card 🚀</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            color: #fff;
+        }
+
+        /* Particle Canvas Background */
+        #canvas-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 35px 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 400px;
+            width: 420px;
             max-width: 90%;
             position: relative;
+            z-index: 10;
+            animation: fadeIn 0.6s ease-out;
         }
 
-        h2 {
-            color: #d63384;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h1, h2 {
+            background: linear-gradient(45deg, #ff7675, #fd79a8, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
-            font-size: 22px;
+            font-weight: 700;
         }
 
         p {
-            color: #555;
+            color: #dfe6e9;
             margin-bottom: 20px;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-size: 15px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 2px solid #ffb6c1;
-            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
             outline: none;
             font-size: 16px;
             text-align: center;
+            transition: all 0.3s;
         }
 
+        input::placeholder { color: #ccc; }
+        input:focus { border-color: #fd79a8; box-shadow: 0 0 10px rgba(253, 121, 168, 0.5); }
+
         button {
-            background-color: #ff6b81;
+            background: linear-gradient(45deg, #ff7675, #d63031);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 14px 28px;
             font-size: 16px;
-            border-radius: 25px;
+            font-weight: 600;
+            border-radius: 30px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             margin: 5px;
         }
 
         button:hover {
-            background-color: #ff4757;
-            transform: scale(1.05);
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(214, 48, 49, 0.6);
         }
 
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
-        /* Age Selection Container */
+        /* Age Selection Box */
         .age-container {
             display: flex;
             flex-direction: column;
@@ -84,85 +114,118 @@
             align-items: center;
             position: relative;
             min-height: 220px;
+            margin-top: 10px;
         }
 
-        .age-btn {
-            width: 140px;
-        }
+        .age-btn { width: 150px; }
 
-        /* Moving button dynamic positioning */
         .runaway {
             position: absolute !important;
             transition: all 0.15s ease-out;
         }
 
-        /* Confetti Animation */
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f2d74e;
-            top: -10px;
-            animation: fall 3s infinite ease-in;
+        /* Timeline Counter Style */
+        .counter-display {
+            font-size: 55px;
+            font-weight: 800;
+            color: #fd79a8;
+            text-shadow: 0 0 20px rgba(253, 121, 168, 0.8);
+            margin: 15px 0;
         }
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
+        .badge-list {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .bible-verse {
             font-style: italic;
-            color: #6c5ce7;
+            color: #a29bfe;
             font-size: 14px;
             margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(162, 155, 254, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 99;
         }
     </style>
 </head>
 <body>
 
-    <!-- SCREEN 1: LOGIN PAGE -->
+    <canvas id="canvas-bg"></canvas>
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- SCREEN 1: VIP ACCESS / LOGIN -->
     <div id="screen1" class="card">
-        <h2>Hello, <span id="display-name">Last Born</span>! 👋</h2>
-        <p>Enter your secret password to unlock your surprise:</p>
-        <input type="password" id="pass-input" placeholder="Enter Password">
-        <button onclick="checkPassword()">Unlock</button>
-        <p id="error-msg" style="color: red; margin-top: 10px; font-size: 14px;" class="hidden">Incorrect password! Try again.</p>
+        <h1>VIP BIRTHDAY ACCESS 👑</h1>
+        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Last Born</strong>! Enter your secret key to unlock your experience:</p>
+        <input type="password" id="pass-input" placeholder="Enter Secret Code">
+        <button onclick="checkPassword()">Unlock Experience 🚀</button>
+        <p id="error-msg" style="color: #ff7675; margin-top: 10px; font-size: 14px;" class="hidden">⚠️ Invalid Key! Try again.</p>
     </div>
 
-    <!-- SCREEN 2: SELECTION PAGE -->
+    <!-- SCREEN 2: INTERACTIVE ORIGIN CHOICE -->
     <div id="screen2" class="card hidden">
-        <h2>How old were you before today ?🎂</h2>
+        <h2>Where did your journey begin? 🧬</h2>
+        <p>Choose your official starting point:</p>
         <div class="age-container" id="age-box">
-            <button class="age-btn" onclick="wrongAge()">old enough</button>
-            <button class="age-btn" onclick="selectCorrectAge()">1 year</button>
+            <button class="age-btn" onclick="wrongChoice()">🧬 Sperm stage</button>
+            <button class="age-btn" onclick="startCounterExperience()">1 year</button>
             <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">20</button>
         </div>
     </div>
 
-    <!-- SCREEN 3: BIRTHDAY WISH & TIMELINE/BIBLE THEME -->
+    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE (DEVELOPMENT -> AGE 21) -->
     <div id="screen3" class="card hidden">
-        <h2>🎉 Happy Birthday! 🎉</h2>
-        <p class="bible-verse">"Before I formed you in the womb I knew you, before you were born I set you apart." — Jeremiah 1:5</p>
-        <p>Celebrating your journey from your early days up to this wonderful milestone of life! God has blessed the world with your presence. ✨</p>
-        <button onclick="goToNextPhase()">Next 💖</button>
+        <h2>Counting Your Growth... ⏳</h2>
+        <div class="counter-display" id="age-counter">0</div>
+        <p id="counter-status">Initializing growth sequence...</p>
+        <button id="counter-next-btn" class="hidden" onclick="goToBirthdayWish()">Explore Destiny ✨</button>
     </div>
 
-    <!-- SCREEN 4: CELEBRATION & POPS -->
+    <!-- SCREEN 4: BIRTHDAY WISH & SCRIPTURE -->
     <div id="screen4" class="card hidden">
-        <h2>✨ Looking Forward to Great Things! ✨</h2>
-        <p>May every new year bring you closer to your biggest dreams, wrapped in endless joy, peace, and love! 🎈🎂</p>
-        <button onclick="goToFinalQuestion()">Continue 💕</button>
+        <h2>🎉 HAPPY BIRTHDAY, BEST BRO! 🎉</h2>
+        <div class="bible-verse">
+            "Before I formed you in the womb I knew you, before you were born I set you apart." — Jeremiah 1:5
+        </div>
+        <p>From early development up to this day, your journey has been nothing short of extraordinary. Thank you for being the most real, loyal, and supportive best friend!</p>
+        
+        <div class="badge-list">
+            <span class="badge">👑 Day One Legend</span>
+            <span class="badge">🔥 Pure Loyalty</span>
+            <span class="badge">🎯 Unstoppable</span>
+        </div>
+
+        <button onclick="goToCelebration()">Next Surprise 🎁</button>
     </div>
 
-    <!-- SCREEN 5: FINAL FEEL-GOOD QUESTION -->
+    <!-- SCREEN 5: BEST FRIEND TRIBUTE & FINAL FEEL-GOOD QUESTION -->
     <div id="screen5" class="card hidden">
-        <h2>🌟 One Quick Question... 🌟</h2>
-        <p>Are you ready to make this year the most amazing, joyful, and successful year of your life yet? 💫</p>
-        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
-            <button onclick="sayYes()">Yes, absolutely! 🚀</button>
-            <button onclick="sayYes()">Ready & excited! ✨</button>
+        <h2>🏆 Official Best Friend Award 🏆</h2>
+        <p>Having a brother and best friend like you makes life 100x better. Are you ready to conquer this year and make it your biggest season of wins yet?</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            <button onclick="finalPopup('Yes! Let\'s conquer the world together! 🚀🔥')">Yes, 100%! 🚀</button>
+            <button onclick="finalPopup('Built for greatness! Let\'s make history! 💪⚡')">Always Ready! 🔥</button>
         </div>
     </div>
 
@@ -173,29 +236,44 @@
 
         document.getElementById('display-name').innerText = RECIPIENT_NAME;
 
-        window.onload = function() {
-            resetRunawayPosition(document.getElementById('run-btn-20'), 150);
-        };
-
-        function resetRunawayPosition(btn, topPx) {
-            btn.style.top = topPx + 'px';
-            btn.style.left = '50%';
-            btn.style.transform = 'translateX(-50%)';
+        // Sound Effects via Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBeep(freq = 440, type = 'sine', duration = 0.1) {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
         }
 
         // Screen 1: Password Check
         function checkPassword() {
+            playBeep(600, 'triangle', 0.15);
             const entered = document.getElementById('pass-input').value;
             if (entered === SECRET_PASSWORD) {
-                document.getElementById('screen1').classList.add('hidden');
-                document.getElementById('screen2').classList.remove('hidden');
+                switchScreen('screen1', 'screen2');
+                resetRunawayPosition(document.getElementById('run-btn-20'), 150);
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
+                playBeep(200, 'sawtooth', 0.3);
             }
         }
 
-        // Screen 2: Dodge Logic for button 20
+        function switchScreen(from, to) {
+            document.getElementById(from).classList.add('hidden');
+            const toElem = document.getElementById(to);
+            toElem.classList.remove('hidden');
+        }
+
+        // Screen 2: Dodge Logic
         function moveButton(btn) {
+            playBeep(800, 'sine', 0.05);
             const container = document.getElementById('age-box');
             const maxX = container.clientWidth - btn.clientWidth;
             const maxY = container.clientHeight - btn.clientHeight;
@@ -208,44 +286,136 @@
             btn.style.transform = 'none';
         }
 
-        function wrongAge() {
-            alert("Lol, not quite that option! Try again.");
+        function wrongChoice() {
+            playBeep(300, 'square', 0.2);
+            alert("Haha! A bit too early in the timeline! Try '1 year'!");
         }
 
-        // Correct Choice Flow ("1 year")
-        function selectCorrectAge() {
-            document.getElementById('screen2').classList.add('hidden');
-            document.getElementById('screen3').classList.remove('hidden');
+        // Screen 3: Interactive Animated Counter
+        function startCounterExperience() {
+            playBeep(523, 'sine', 0.2);
+            switchScreen('screen2', 'screen3');
+            
+            let count = 0;
+            const counterElem = document.getElementById('age-counter');
+            const statusElem = document.getElementById('counter-status');
+            
+            const interval = setInterval(() => {
+                count++;
+                counterElem.innerText = count;
+                playBeep(300 + count * 25, 'sine', 0.05);
+
+                if(count <= 5) statusElem.innerText = "Early stages & childhood blessings... 🍼";
+                else if(count <= 12) statusElem.innerText = "Growing up & building character... ⚡";
+                else if(count <= 18) statusElem.innerText = "Teenage years & epic memories... 🔥";
+                else if(count === 20) statusElem.innerText = "Reaching age 20 milestone! 🎂";
+                else if(count === 21) {
+                    clearInterval(interval);
+                    statusElem.innerText = "✨ AGE 21 & BEYOND UNLOCKED! ✨";
+                    document.getElementById('counter-next-btn').classList.remove('hidden');
+                    triggerConfetti();
+                    playBeep(880, 'triangle', 0.4);
+                }
+            }, 200);
+        }
+
+        function goToBirthdayWish() {
+            playBeep(600, 'sine', 0.2);
+            switchScreen('screen3', 'screen4');
             triggerConfetti();
         }
 
-        function goToNextPhase() {
-            document.getElementById('screen3').classList.add('hidden');
-            document.getElementById('screen4').classList.remove('hidden');
+        function goToCelebration() {
+            playBeep(700, 'sine', 0.2);
+            switchScreen('screen4', 'screen5');
+        }
+
+        function finalPopup(msg) {
+            playBeep(900, 'triangle', 0.5);
             triggerConfetti();
+            alert("🔥 BEST FRIEND CONFIRMED 🔥\n\n" + msg + "\n\nHappy Birthday, Bro!");
         }
 
-        function goToFinalQuestion() {
-            document.getElementById('screen4').classList.add('hidden');
-            document.getElementById('screen5').classList.remove('hidden');
+        function resetRunawayPosition(btn, topPx) {
+            btn.style.top = topPx + 'px';
+            btn.style.left = '50%';
+            btn.style.transform = 'translateX(-50%)';
         }
 
-        function sayYes() {
-            alert("🌟 That's the spirit! Wishing you all the success, happiness, and blessings in the world. Happy Birthday! MATOKEO MICHAEL LUSAGE (Last born)🎉❤️");
+        // Ambient Particle Background
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        for(let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                dx: (Math.random() - 0.5) * 0.8,
+                dy: (Math.random() - 0.5) * 0.8
+            });
         }
 
-        // Confetti Animation Generator
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(253, 121, 168, 0.6)';
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Confetti Burst Generator
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const cCtx = confettiCanvas.getContext('2d');
+        let confettiPieces = [];
+
         function triggerConfetti() {
-            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#2bcbba', '#ff6b81'];
-            for (let i = 0; i < 60; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                document.body.appendChild(confetti);
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+            const colors = ['#ff7675', '#fd79a8', '#a29bfe', '#ffeaa7', '#55efc4'];
+            for (let i = 0; i < 80; i++) {
+                confettiPieces.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.5) * 12 - 4,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    life: 100
+                });
             }
         }
+
+        function animateConfetti() {
+            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confettiPieces.forEach((p, index) => {
+                cCtx.fillStyle = p.color;
+                cCtx.fillRect(p.x, p.y, p.size, p.size);
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.2; // gravity
+                p.life--;
+                if(p.life <= 0) confettiPieces.splice(index, 1);
+            });
+            requestAnimationFrame(animateConfetti);
+        }
+        animateConfetti();
     </script>
 </body>
 </html>
