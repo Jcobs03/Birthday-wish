@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestie Birthday Card ✨ Party Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Ultimate Birthday VIP Card 🚀</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,21 +22,15 @@
             color: #fff;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        #canvas-bg, #confetti-canvas {
+        /* Particle Canvas Background */
+        #canvas-bg {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
-
-        #canvas-bg { z-index: 1; }
-        #confetti-canvas { z-index: 99; }
 
         /* Floating Audio Control Toggle */
         #music-control {
@@ -65,37 +56,36 @@
 
         #music-control:hover {
             transform: scale(1.08);
-            background: rgba(162, 155, 254, 0.4);
+            background: rgba(253, 121, 168, 0.4);
         }
 
         .card {
             background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 35px 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(162, 155, 254, 0.2);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 440px;
+            width: 420px;
             max-width: 90%;
             position: relative;
             z-index: 10;
-            animation: fadeIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeIn 0.6s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         h1, h2 {
-            font-family: 'Dancing Script', cursive;
             background: linear-gradient(45deg, #ff7675, #fd79a8, #a29bfe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
-            font-size: 36px;
+            font-weight: 700;
         }
 
         p {
@@ -103,7 +93,6 @@
             margin-bottom: 20px;
             line-height: 1.6;
             font-size: 15px;
-            font-weight: 300;
         }
 
         input {
@@ -111,8 +100,8 @@
             padding: 14px;
             margin-bottom: 18px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
             outline: none;
             font-size: 16px;
@@ -120,11 +109,11 @@
             transition: all 0.3s;
         }
 
-        input::placeholder { color: #e0e0e0; }
-        input:focus { border-color: #a29bfe; box-shadow: 0 0 15px rgba(162, 155, 254, 0.6); }
+        input::placeholder { color: #ccc; }
+        input:focus { border-color: #fd79a8; box-shadow: 0 0 10px rgba(253, 121, 168, 0.5); }
 
         button {
-            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            background: linear-gradient(45deg, #ff7675, #d63031);
             color: white;
             border: none;
             padding: 14px 28px;
@@ -132,14 +121,14 @@
             font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin: 6px;
+            margin: 5px;
         }
 
         button:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow: 0 12px 25px rgba(108, 92, 231, 0.7);
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(214, 48, 49, 0.6);
         }
 
         .hidden { display: none !important; }
@@ -155,7 +144,7 @@
             margin-top: 10px;
         }
 
-        .age-btn { width: 160px; }
+        .age-btn { width: 150px; }
 
         .runaway {
             position: absolute !important;
@@ -164,96 +153,50 @@
 
         /* Timeline Counter Style */
         .counter-display {
-            font-size: 60px;
+            font-size: 55px;
             font-weight: 800;
             color: #fd79a8;
-            text-shadow: 0 0 25px rgba(253, 121, 168, 0.9);
+            text-shadow: 0 0 20px rgba(253, 121, 168, 0.8);
             margin: 15px 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Polaroid Photo Frame */
-        .polaroid {
-            background: white;
-            padding: 12px 12px 25px 12px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transform: rotate(-3deg);
-            margin: 15px auto;
-            width: 80%;
-            transition: transform 0.3s ease;
-        }
-
-        .polaroid:hover { transform: rotate(0deg) scale(1.03); }
-
-        .polaroid-img {
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(135deg, #a29bfe, #74b9ff);
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 50px;
-        }
-
-        .polaroid-caption {
-            color: #333;
-            font-family: 'Dancing Script', cursive;
-            font-size: 22px;
-            margin-top: 10px;
-            margin-bottom: 0;
-        }
-
-        /* Meter Bar */
-        .meter-container {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            height: 22px;
-            margin: 15px 0;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .meter-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #a29bfe, #fd79a8, #00b894);
-            border-radius: 20px;
-            transition: width 0.1s linear;
         }
 
         .badge-list {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
         .badge {
             background: rgba(255, 255, 255, 0.15);
-            padding: 6px 14px;
+            padding: 8px 15px;
             border-radius: 20px;
-            font-size: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .bible-verse {
             font-style: italic;
             color: #a29bfe;
-            font-size: 13px;
+            font-size: 14px;
             margin-bottom: 15px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            border-left: 3px solid #a29bfe;
+            padding: 10px;
+            background: rgba(162, 155, 254, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 99;
         }
     </style>
 </head>
-<body>
+<body onclick="tryStartMusic()" ontouchstart="tryStartMusic()">
 
     <canvas id="canvas-bg"></canvas>
     <canvas id="confetti-canvas"></canvas>
@@ -261,53 +204,46 @@
     <!-- Floating Audio Control Toggle -->
     <button id="music-control" class="hidden" onclick="toggleMusic(event)">🎵 Music: On</button>
 
-    <!-- Hidden HTML5 Audio Player -->
+    <!-- Hidden HTML5 Audio Player for Chella - Pretty Nun (Instrumental) -->
     <audio id="bg-music" loop>
         <source id="music-source" src="pretty-nun.mp3" type="audio/mpeg">
     </audio>
 
     <!-- SCREEN 1: VIP ACCESS / LOGIN -->
     <div id="screen1" class="card">
-        <h1>VIP Secret Entry 👑⚡</h1>
-        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Last Born</strong>! Enter your secret key to reveal your birthday card:</p>
-        <input type="password" id="pass-input" placeholder="Enter Password">
-        <button onclick="checkPassword()">Unlock Card 🚀</button>
-        <p id="error-msg" style="color: #ff7675; margin-top: 10px; font-size: 14px;" class="hidden">❌ Incorrect password! Try again, bestie.</p>
+        <h1>VIP BIRTHDAY ACCESS 👑</h1>
+        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Last Born</strong>! Enter your secret key to unlock your experience:</p>
+        <input type="password" id="pass-input" placeholder="Enter Secret Code" onfocus="tryStartMusic()">
+        <button onclick="checkPassword()">Unlock Experience 🚀</button>
+        <p id="error-msg" style="color: #ff7675; margin-top: 10px; font-size: 14px;" class="hidden">⚠️ Invalid Key! Try again.</p>
     </div>
 
     <!-- SCREEN 2: INTERACTIVE ORIGIN CHOICE -->
     <div id="screen2" class="card hidden">
-        <h2>How old are you now?? 🧬</h2>
+        <h2>Where did your journey begin? 🧬</h2>
         <p>Choose your official starting point:</p>
         <div class="age-container" id="age-box">
-            <button class="age-btn" onclick="wrongChoice()">old enough</button>
+            <button class="age-btn" onclick="wrongChoice()">🧬 Sperm stage</button>
             <button class="age-btn" onclick="startCounterExperience()">1 year</button>
-            <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">21 years</button>
+            <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">20</button>
         </div>
     </div>
 
-    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE -->
+    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE (DEVELOPMENT -> AGE 21) -->
     <div id="screen3" class="card hidden">
         <h2>Counting Your Growth... ⏳</h2>
         <div class="counter-display" id="age-counter">0</div>
         <p id="counter-status">Initializing growth sequence...</p>
-        <button id="counter-next-btn" class="hidden" onclick="goToBirthdayWish()">Unfold The Journey ✨</button>
+        <button id="counter-next-btn" class="hidden" onclick="goToBirthdayWish()">Explore Destiny ✨</button>
     </div>
 
-    <!-- SCREEN 4: BIRTHDAY WISH & POLAROID -->
+    <!-- SCREEN 4: BIRTHDAY WISH & SCRIPTURE -->
     <div id="screen4" class="card hidden">
-        <h2>🎉 Happy Birthday, Bestie! 🎉</h2>
-        
-        <div class="polaroid">
-            <div class="polaroid-img">👑✨🔥</div>
-            <p class="polaroid-caption">Best Friend For Life 🌟</p>
-        </div>
-
+        <h2>🎉 HAPPY BIRTHDAY, BESTIE! 🎉</h2>
         <div class="bible-verse">
             "Before I formed you in the womb I knew you, before you were born I set you apart." — Jeremiah 1:5
         </div>
-        
-        <p>From your early days up to this milestone, God made you so real, supportive, and full of life! Thank you for being the most genuine best friend ever.</p>
+        <p>From early development up to this day, your journey has been nothing short of extraordinary. Thank you for being the most genuine, loyal, and amazing best friend!</p>
         
         <div class="badge-list">
             <span class="badge">👑 Day One Legend</span>
@@ -315,31 +251,16 @@
             <span class="badge">✨ Queen of Good Vibes</span>
         </div>
 
-        <button onclick="goToMeterScreen()">Test Bestie Bond ⚡</button>
+        <button onclick="goToCelebration()">Next Surprise 🎁</button>
     </div>
 
-    <!-- SCREEN 5: FRIENDSHIP METER MINIGAME -->
+    <!-- SCREEN 5: BEST FRIEND TRIBUTE & FINAL FEEL-GOOD QUESTION -->
     <div id="screen5" class="card hidden">
-        <h2>Best Friend Power Meter ⚡</h2>
-        <p>Calculating our friendship energy level...</p>
-        
-        <div class="counter-display" id="meter-num">0%</div>
-        <div class="meter-container">
-            <div class="meter-fill" id="meter-bar"></div>
-        </div>
-
-        <p id="meter-status" style="font-size: 13px; color: #a29bfe; min-height: 20px;"></p>
-
-        <button id="meter-next-btn" class="hidden" onclick="goToFinalQuestion()">Continue 🚀</button>
-    </div>
-
-    <!-- SCREEN 6: BEST FRIEND TRIBUTE & FINAL QUESTION -->
-    <div id="screen6" class="card hidden">
-        <h2>🌟 Final Bestie Challenge 🌟</h2>
-        <p>Having a best friend like you makes life 100x better! Are you ready to conquer this new year of your life and achieve all your biggest goals?</p>
+        <h2>🏆 Official Bestie Award 🏆</h2>
+        <p>Having an incredible best friend like you makes life 100x better. Are you ready to conquer this year and make it your biggest season of wins yet?</p>
         <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-            <button onclick="finalPopup('Yes! Best friends forever! 🚀🔥')">Yes, 100%! 🚀</button>
-            <button onclick="finalPopup('Built for greatness! Let\'s make history! 💪⚡')">Born Ready! 🔥</button>
+            <button onclick="finalPopup('Yes! Let\'s conquer the world together! 🚀🔥')">Yes, 100%! 🚀</button>
+            <button onclick="finalPopup('Built for greatness! Let\'s make history! 💪⚡')">Always Ready! 🔥</button>
         </div>
     </div>
 
@@ -350,19 +271,23 @@
 
         document.getElementById('display-name').innerText = RECIPIENT_NAME;
 
-        // Music Player Logic
+        // Music Player Autoplay & Toggle Logic
         const bgMusic = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-control');
         let isPlaying = false;
+        let musicStarted = false;
 
-        function playBackgroundSong() {
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                musicBtn.classList.remove('hidden');
-                musicBtn.innerText = "🎵 Music: On";
-            }).catch(err => {
-                console.log("Audio play deferred or requires user interaction.");
-            });
+        function tryStartMusic() {
+            if (!musicStarted) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicStarted = true;
+                    musicBtn.classList.remove('hidden');
+                    musicBtn.innerText = "🎵 Music: On";
+                }).catch(err => {
+                    // Handled automatically on next interaction
+                });
+            }
         }
 
         function toggleMusic(event) {
@@ -378,15 +303,15 @@
             }
         }
 
+        // Sound Effects via Web Audio API
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playChime(freq = 523, type = 'sine', duration = 0.2) {
+        function playBeep(freq = 440, type = 'sine', duration = 0.1) {
             try {
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.type = type;
                 osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start();
@@ -394,42 +319,48 @@
             } catch(e) {}
         }
 
+        // Screen 1: Password Check
         function checkPassword() {
-            playChime(659, 'triangle', 0.25);
+            playBeep(600, 'triangle', 0.15);
             const entered = document.getElementById('pass-input').value;
             if (entered === SECRET_PASSWORD) {
-                playBackgroundSong(); // Song plays when she unlocks!
                 switchScreen('screen1', 'screen2');
                 resetRunawayPosition(document.getElementById('run-btn-20'), 150);
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
-                playChime(220, 'sawtooth', 0.3);
+                playBeep(200, 'sawtooth', 0.3);
             }
         }
 
         function switchScreen(from, to) {
             document.getElementById(from).classList.add('hidden');
-            document.getElementById(to).classList.remove('hidden');
+            const toElem = document.getElementById(to);
+            toElem.classList.remove('hidden');
         }
 
+        // Screen 2: Dodge Logic
         function moveButton(btn) {
-            playChime(880, 'sine', 0.08);
+            playBeep(800, 'sine', 0.05);
             const container = document.getElementById('age-box');
             const maxX = container.clientWidth - btn.clientWidth;
             const maxY = container.clientHeight - btn.clientHeight;
 
-            btn.style.left = Math.floor(Math.random() * maxX) + 'px';
-            btn.style.top = Math.floor(Math.random() * maxY) + 'px';
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+
+            btn.style.left = newX + 'px';
+            btn.style.top = newY + 'px';
             btn.style.transform = 'none';
         }
 
         function wrongChoice() {
-            playChime(350, 'square', 0.2);
-            alert("Haha! Not quite that early! Choose '1 year'!");
+            playBeep(300, 'square', 0.2);
+            alert("Haha! A bit too early in the timeline! Try '1 year'!");
         }
 
+        // Screen 3: Interactive Animated Counter
         function startCounterExperience() {
-            playChime(523, 'sine', 0.2);
+            playBeep(523, 'sine', 0.2);
             switchScreen('screen2', 'screen3');
             
             let count = 0;
@@ -439,65 +370,37 @@
             const interval = setInterval(() => {
                 count++;
                 counterElem.innerText = count;
-                playChime(400 + count * 20, 'sine', 0.08);
+                playBeep(300 + count * 25, 'sine', 0.05);
 
-                if(count <= 5) statusElem.innerText = "Childhood blessings & early days... 🍼";
-                else if(count <= 12) statusElem.innerText = "Growing up & bright memories... ✨";
-                else if(count <= 18) statusElem.innerText = "Teen years & building character... 🔥";
+                if(count <= 5) statusElem.innerText = "Early stages & childhood blessings... 🍼";
+                else if(count <= 12) statusElem.innerText = "Growing up & building character... ⚡";
+                else if(count <= 18) statusElem.innerText = "Teenage years & epic memories... 🔥";
                 else if(count === 20) statusElem.innerText = "Reaching age 20 milestone! 🎂";
                 else if(count === 21) {
                     clearInterval(interval);
                     statusElem.innerText = "✨ AGE 21 & BEYOND UNLOCKED! ✨";
                     document.getElementById('counter-next-btn').classList.remove('hidden');
                     triggerConfetti();
-                    playChime(1046, 'triangle', 0.5);
+                    playBeep(880, 'triangle', 0.4);
                 }
-            }, 180);
+            }, 200);
         }
 
         function goToBirthdayWish() {
-            playChime(784, 'sine', 0.3);
+            playBeep(600, 'sine', 0.2);
             switchScreen('screen3', 'screen4');
             triggerConfetti();
         }
 
-        function goToMeterScreen() {
-            playChime(659, 'sine', 0.2);
+        function goToCelebration() {
+            playBeep(700, 'sine', 0.2);
             switchScreen('screen4', 'screen5');
-
-            let fill = 0;
-            const bar = document.getElementById('meter-bar');
-            const num = document.getElementById('meter-num');
-            const status = document.getElementById('meter-status');
-
-            const meterInterval = setInterval(() => {
-                fill += 10;
-                bar.style.width = Math.min(fill, 100) + '%';
-                num.innerText = fill + '%';
-                playChime(500 + fill * 3, 'sine', 0.05);
-
-                if(fill === 100) status.innerText = "100% - Best Friend Status Confirmed! 🔥";
-                if(fill === 300) status.innerText = "300% - Pure Loyalty & Unstoppable Energy! 💪";
-                if(fill === 500) status.innerText = "500% - One in a Billion Legend! ✨";
-                if(fill >= 1000) {
-                    clearInterval(meterInterval);
-                    num.innerText = "1000% INFINITE!";
-                    status.innerText = "👑 OFF THE CHARTS! UNSTOPPABLE BESTIE! 👑";
-                    document.getElementById('meter-next-btn').classList.remove('hidden');
-                    triggerConfetti();
-                }
-            }, 80);
-        }
-
-        function goToFinalQuestion() {
-            playChime(880, 'sine', 0.2);
-            switchScreen('screen5', 'screen6');
         }
 
         function finalPopup(msg) {
-            playChime(1046, 'triangle', 0.6);
+            playBeep(900, 'triangle', 0.5);
             triggerConfetti();
-            alert("🔥 BEST FRIEND FOR LIFE 🔥\n\n" + msg + "\n\nHappy Birthday, Last Born!");
+            alert("🔥 BEST FRIEND CONFIRMED 🔥\n\n" + msg + "\n\nHappy Birthday, Bestie!");
         }
 
         function resetRunawayPosition(btn, topPx) {
@@ -506,7 +409,7 @@
             btn.style.transform = 'translateX(-50%)';
         }
 
-        // Ambient Particle Starfield
+        // Ambient Particle Background
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -530,7 +433,7 @@
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(162, 155, 254, 0.6)';
+            ctx.fillStyle = 'rgba(253, 121, 168, 0.6)';
             particles.forEach(p => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -544,7 +447,7 @@
         }
         animateParticles();
 
-        // Confetti Generator
+        // Confetti Burst Generator
         const confettiCanvas = document.getElementById('confetti-canvas');
         const cCtx = confettiCanvas.getContext('2d');
         let confettiPieces = [];
@@ -552,16 +455,16 @@
         function triggerConfetti() {
             confettiCanvas.width = window.innerWidth;
             confettiCanvas.height = window.innerHeight;
-            const colors = ['#ff7675', '#fd79a8', '#a29bfe', '#ffeaa7', '#00b894'];
-            for (let i = 0; i < 90; i++) {
+            const colors = ['#ff7675', '#fd79a8', '#a29bfe', '#ffeaa7', '#55efc4'];
+            for (let i = 0; i < 80; i++) {
                 confettiPieces.push({
                     x: canvas.width / 2,
                     y: canvas.height / 2,
-                    vx: (Math.random() - 0.5) * 14,
-                    vy: (Math.random() - 0.5) * 14 - 5,
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.5) * 12 - 4,
                     size: Math.random() * 8 + 4,
                     color: colors[Math.floor(Math.random() * colors.length)],
-                    life: 110
+                    life: 100
                 });
             }
         }
@@ -573,7 +476,7 @@
                 cCtx.fillRect(p.x, p.y, p.size, p.size);
                 p.x += p.vx;
                 p.y += p.vy;
-                p.vy += 0.2;
+                p.vy += 0.2; // gravity
                 p.life--;
                 if(p.life <= 0) confettiPieces.splice(index, 1);
             });
