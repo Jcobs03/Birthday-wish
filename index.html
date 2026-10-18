@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Birthday VIP Card 🚀</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -68,7 +69,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 420px;
+            width: 440px;
             max-width: 90%;
             position: relative;
             z-index: 10;
@@ -81,11 +82,13 @@
         }
 
         h1, h2 {
+            font-family: 'Dancing Script', cursive;
             background: linear-gradient(45deg, #ff7675, #fd79a8, #a29bfe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
             font-weight: 700;
+            font-size: 38px;
         }
 
         p {
@@ -116,14 +119,14 @@
             background: linear-gradient(45deg, #ff7675, #d63031);
             color: white;
             border: none;
-            padding: 14px 28px;
-            font-size: 16px;
+            padding: 12px 22px;
+            font-size: 15px;
             font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin: 5px;
+            margin: 4px;
         }
 
         button:hover {
@@ -133,18 +136,21 @@
 
         .hidden { display: none !important; }
 
-        /* Age Selection Box */
+        /* Age Selection Dynamic Grid */
         .age-container {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
             align-items: center;
             position: relative;
-            min-height: 220px;
+            min-height: 280px;
             margin-top: 10px;
         }
 
-        .age-btn { width: 150px; }
+        .age-btn {
+            width: 120px;
+        }
 
         .runaway {
             position: absolute !important;
@@ -212,7 +218,7 @@
     <!-- SCREEN 1: VIP ACCESS / LOGIN -->
     <div id="screen1" class="card">
         <h1>VIP BIRTHDAY ACCESS 👑</h1>
-        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Last Born</strong>! Enter your secret key to unlock your experience:</p>
+        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Irene</strong>! Enter your secret key to unlock your experience:</p>
         <input type="password" id="pass-input" placeholder="Enter Secret Code" onfocus="tryStartMusic()">
         <button onclick="checkPassword()">Unlock Experience 🚀</button>
         <p id="error-msg" style="color: #ff7675; margin-top: 10px; font-size: 14px;" class="hidden">⚠️ Invalid Key! Try again.</p>
@@ -220,16 +226,25 @@
 
     <!-- SCREEN 2: INTERACTIVE ORIGIN CHOICE -->
     <div id="screen2" class="card hidden">
-        <h2>How old are you now??😂😂 🧬</h2>
+        <h2>Where did your journey begin? 🧬</h2>
         <p>Choose your official starting point:</p>
         <div class="age-container" id="age-box">
-            <button class="age-btn" onclick="wrongChoice()">old enough</button>
+            <!-- Correct Option (Stays Fixed) -->
             <button class="age-btn" onclick="startCounterExperience()">1 year</button>
-            <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">21 years</button>
+
+            <!-- Runaway / Dodging Options -->
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">🧬 Sperm</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">2 years</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">5 years</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">10 years</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">18 years</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">20 years</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">25 years</button>
+            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">Old enough</button>
         </div>
     </div>
 
-    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE (DEVELOPMENT -> AGE 21) -->
+    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE -->
     <div id="screen3" class="card hidden">
         <h2>Counting Your Growth... ⏳</h2>
         <div class="counter-display" id="age-counter">0</div>
@@ -239,11 +254,11 @@
 
     <!-- SCREEN 4: BIRTHDAY WISH & SCRIPTURE -->
     <div id="screen4" class="card hidden">
-        <h2>🎉 HAPPY BIRTHDAY, BESTIE! Lastborn(MATOKEO MICHAEL LUSAGE)🎉</h2>
+        <h2>🎉 HAPPY BIRTHDAY, IRENE! 🎉</h2>
         <div class="bible-verse">
             "Before I formed you in the womb I knew you, before you were born I set you apart." — Jeremiah 1:5
         </div>
-        <p>From early development up to this day, your journey has been nothing short of extraordinary. Thank you for being the most genuine, loyal, and amazing best friend!</p>
+        <p>From early development up to this day, your journey has been nothing short of extraordinary. Thank you for being such an amazing, genuine, and loyal best friend!</p>
         
         <div class="badge-list">
             <span class="badge">👑 Day One Legend</span>
@@ -254,7 +269,7 @@
         <button onclick="goToCelebration()">Next Surprise 🎁</button>
     </div>
 
-    <!-- SCREEN 5: BEST FRIEND TRIBUTE & FINAL FEEL-GOOD QUESTION -->
+    <!-- SCREEN 5: BEST FRIEND TRIBUTE & FINAL QUESTION -->
     <div id="screen5" class="card hidden">
         <h2>🏆 Official Bestie Award 🏆</h2>
         <p>Having an incredible best friend like you makes life 100x better. Are you ready to conquer this year and make it your biggest season of wins yet?</p>
@@ -267,7 +282,7 @@
     <script>
         // --- CONFIGURATION ---
         const SECRET_PASSWORD = "Abhujubhuju"; 
-        const RECIPIENT_NAME = "Last Born";  
+        const RECIPIENT_NAME = "Irene";  
 
         document.getElementById('display-name').innerText = RECIPIENT_NAME;
 
@@ -285,7 +300,7 @@
                     musicBtn.classList.remove('hidden');
                     musicBtn.innerText = "🎵 Music: On";
                 }).catch(err => {
-                    // Handled automatically on next interaction
+                    // Autoplay deferred until user interaction
                 });
             }
         }
@@ -325,7 +340,7 @@
             const entered = document.getElementById('pass-input').value;
             if (entered === SECRET_PASSWORD) {
                 switchScreen('screen1', 'screen2');
-                resetRunawayPosition(document.getElementById('run-btn-20'), 150);
+                initRunawayButtons();
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
                 playBeep(200, 'sawtooth', 0.3);
@@ -334,28 +349,30 @@
 
         function switchScreen(from, to) {
             document.getElementById(from).classList.add('hidden');
-            const toElem = document.getElementById(to);
-            toElem.classList.remove('hidden');
+            document.getElementById(to).classList.remove('hidden');
         }
 
-        // Screen 2: Dodge Logic
+        // Initialize positions for all runaway buttons in Screen 2
+        function initRunawayButtons() {
+            const runaways = document.querySelectorAll('.runaway');
+            runaways.forEach(btn => {
+                moveButton(btn);
+            });
+        }
+
+        // Screen 2: Dodge Logic for all runaway buttons
         function moveButton(btn) {
             playBeep(800, 'sine', 0.05);
             const container = document.getElementById('age-box');
             const maxX = container.clientWidth - btn.clientWidth;
             const maxY = container.clientHeight - btn.clientHeight;
 
-            const newX = Math.floor(Math.random() * maxX);
-            const newY = Math.floor(Math.random() * maxY);
+            const newX = Math.max(0, Math.floor(Math.random() * maxX));
+            const newY = Math.max(0, Math.floor(Math.random() * maxY));
 
             btn.style.left = newX + 'px';
             btn.style.top = newY + 'px';
             btn.style.transform = 'none';
-        }
-
-        function wrongChoice() {
-            playBeep(300, 'square', 0.2);
-            alert("Haha! A bit too early in the timeline! Try '1 year'!");
         }
 
         // Screen 3: Interactive Animated Counter
@@ -376,14 +393,14 @@
                 else if(count <= 12) statusElem.innerText = "Growing up & building character... ⚡";
                 else if(count <= 18) statusElem.innerText = "Teenage years & epic memories... 🔥";
                 else if(count === 20) statusElem.innerText = "Reaching age 20 milestone! 🎂";
-                else if(count === 21) {
+                else if(count === 25) {
                     clearInterval(interval);
-                    statusElem.innerText = "✨ AGE 21 & BEYOND UNLOCKED! ✨";
+                    statusElem.innerText = "✨ AGE 25 & BEYOND UNLOCKED! ✨";
                     document.getElementById('counter-next-btn').classList.remove('hidden');
                     triggerConfetti();
                     playBeep(880, 'triangle', 0.4);
                 }
-            }, 200);
+            }, 160);
         }
 
         function goToBirthdayWish() {
@@ -400,13 +417,7 @@
         function finalPopup(msg) {
             playBeep(900, 'triangle', 0.5);
             triggerConfetti();
-            alert("🔥 BEST FRIEND CONFIRMED 🔥\n\n" + msg + "\n\nHappy Birthday, Bestie!");
-        }
-
-        function resetRunawayPosition(btn, topPx) {
-            btn.style.top = topPx + 'px';
-            btn.style.left = '50%';
-            btn.style.transform = 'translateX(-50%)';
+            alert("🔥 BEST FRIEND CONFIRMED 🔥\n\n" + msg + "\n\nHappy Birthday, Irene!");
         }
 
         // Ambient Particle Background
@@ -476,7 +487,7 @@
                 cCtx.fillRect(p.x, p.y, p.size, p.size);
                 p.x += p.vx;
                 p.y += p.vy;
-                p.vy += 0.2; // gravity
+                p.vy += 0.2;
                 p.life--;
                 if(p.life <= 0) confettiPieces.splice(index, 1);
             });
