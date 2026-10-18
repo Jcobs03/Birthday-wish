@@ -81,6 +81,17 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
+        /* Page Tear Out Animation */
+        .tear-out {
+            animation: tearAnim 0.8s forwards ease-in-out !important;
+        }
+
+        @keyframes tearAnim {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.1) rotate(-8deg) translateY(-30px); opacity: 0.8; filter: blur(2px); }
+            100% { transform: scale(0) rotate(25deg) translateY(200px); opacity: 0; }
+        }
+
         h1, h2 {
             font-family: 'Dancing Script', cursive;
             background: linear-gradient(45deg, #ff7675, #fd79a8, #a29bfe);
@@ -136,20 +147,19 @@
 
         .hidden { display: none !important; }
 
-        /* Age Selection Dynamic Grid */
+        /* Age Selection Dynamic Container */
         .age-container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
             align-items: center;
             position: relative;
-            min-height: 280px;
+            min-height: 250px;
             margin-top: 10px;
         }
 
         .age-btn {
-            width: 120px;
+            width: 150px;
         }
 
         .runaway {
@@ -159,10 +169,10 @@
 
         /* Timeline Counter Style */
         .counter-display {
-            font-size: 55px;
+            font-size: 65px;
             font-weight: 800;
             color: #fd79a8;
-            text-shadow: 0 0 20px rgba(253, 121, 168, 0.8);
+            text-shadow: 0 0 25px rgba(253, 121, 168, 0.9);
             margin: 15px 0;
         }
 
@@ -218,51 +228,47 @@
     <!-- SCREEN 1: VIP ACCESS / LOGIN -->
     <div id="screen1" class="card">
         <h1>VIP BIRTHDAY ACCESS 👑</h1>
-        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Irene</strong>! Enter your secret key to unlock your experience:</p>
+        <p>Welcome, <strong style="color: #fd79a8;" id="display-name">Irene (Last Born)</strong>! Enter your secret key to unlock your experience:</p>
         <input type="password" id="pass-input" placeholder="Enter Secret Code" onfocus="tryStartMusic()">
         <button onclick="checkPassword()">Unlock Experience 🚀</button>
         <p id="error-msg" style="color: #ff7675; margin-top: 10px; font-size: 14px;" class="hidden">⚠️ Invalid Key! Try again.</p>
     </div>
 
-    <!-- SCREEN 2: INTERACTIVE ORIGIN CHOICE -->
+    <!-- SCREEN 2: INTERACTIVE AGE QUESTION -->
     <div id="screen2" class="card hidden">
-        <h2>Where did your journey begin? 🧬</h2>
-        <p>Choose your official starting point:</p>
+        <h2>How old are you now? 🤣🤣</h2>
+        <p>Pick your true milestone below:</p>
         <div class="age-container" id="age-box">
             <!-- Correct Option (Stays Fixed) -->
-            <button class="age-btn" onclick="startCounterExperience()">1 year</button>
+            <button class="age-btn" onclick="startCounterExperience()">My 1st year</button>
 
-            <!-- Runaway / Dodging Options -->
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">🧬 Sperm</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">2 years</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">5 years</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">10 years</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">18 years</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">20 years</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">25 years</button>
-            <button class="age-btn runaway" onmouseover="moveButton(this)" onclick="moveButton(this)">Old enough</button>
+            <!-- Dodging Options -->
+            <button class="age-btn runaway" id="run-btn-old" onmouseover="moveButton(this)" onclick="moveButton(this)">Old enough</button>
+            <button class="age-btn runaway" id="run-btn-20" onmouseover="moveButton(this)" onclick="moveButton(this)">My 20th year</button>
         </div>
     </div>
 
-    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE -->
+    <!-- SCREEN 3: TIMELINE COUNTING SEQUENCE (COUNTS 1 -> 19 -> TEARS UP AT 20) -->
     <div id="screen3" class="card hidden">
-        <h2>Counting Your Growth... ⏳</h2>
-        <div class="counter-display" id="age-counter">0</div>
-        <p id="counter-status">Initializing growth sequence...</p>
-        <button id="counter-next-btn" class="hidden" onclick="goToBirthdayWish()">Explore Destiny ✨</button>
+        <h2>Counting Your Journey... ⏳</h2>
+        <div class="counter-display" id="age-counter">1</div>
+        <p id="counter-status">Warming up the timeline...</p>
     </div>
 
     <!-- SCREEN 4: BIRTHDAY WISH & SCRIPTURE -->
     <div id="screen4" class="card hidden">
         <h2>🎉 HAPPY BIRTHDAY, IRENE! 🎉</h2>
+        <p style="font-size: 16px; color: #fd79a8; font-weight: 600; margin-bottom: 10px;">(To My Favorite Last Born ✨)</p>
+        
         <div class="bible-verse">
             "Before I formed you in the womb I knew you, before you were born I set you apart." — Jeremiah 1:5
         </div>
-        <p>From early development up to this day, your journey has been nothing short of extraordinary. Thank you for being such an amazing, genuine, and loyal best friend!</p>
+        
+        <p>From your very 1st year up to reaching age 20 today, your life has been filled with pure grace, brightness, and strength. Thank you for being such an extraordinary best friend!</p>
         
         <div class="badge-list">
-            <span class="badge">👑 Day One Legend</span>
-            <span class="badge">🔥 Pure Loyalty</span>
+            <span class="badge">👑 Pure Royalty</span>
+            <span class="badge">🔥 Forever Bestie</span>
             <span class="badge">✨ Queen of Good Vibes</span>
         </div>
 
@@ -272,7 +278,7 @@
     <!-- SCREEN 5: BEST FRIEND TRIBUTE & FINAL QUESTION -->
     <div id="screen5" class="card hidden">
         <h2>🏆 Official Bestie Award 🏆</h2>
-        <p>Having an incredible best friend like you makes life 100x better. Are you ready to conquer this year and make it your biggest season of wins yet?</p>
+        <p>Having an incredible best friend like you makes life 100x better. Are you ready to conquer this new year and make it your biggest season of wins yet?</p>
         <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
             <button onclick="finalPopup('Yes! Let\'s conquer the world together! 🚀🔥')">Yes, 100%! 🚀</button>
             <button onclick="finalPopup('Built for greatness! Let\'s make history! 💪⚡')">Always Ready! 🔥</button>
@@ -282,7 +288,7 @@
     <script>
         // --- CONFIGURATION ---
         const SECRET_PASSWORD = "Abhujubhuju"; 
-        const RECIPIENT_NAME = "Irene";  
+        const RECIPIENT_NAME = "Irene (Last Born)";  
 
         document.getElementById('display-name').innerText = RECIPIENT_NAME;
 
@@ -340,7 +346,8 @@
             const entered = document.getElementById('pass-input').value;
             if (entered === SECRET_PASSWORD) {
                 switchScreen('screen1', 'screen2');
-                initRunawayButtons();
+                resetRunawayPosition(document.getElementById('run-btn-old'), 80);
+                resetRunawayPosition(document.getElementById('run-btn-20'), 150);
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
                 playBeep(200, 'sawtooth', 0.3);
@@ -352,15 +359,13 @@
             document.getElementById(to).classList.remove('hidden');
         }
 
-        // Initialize positions for all runaway buttons in Screen 2
-        function initRunawayButtons() {
-            const runaways = document.querySelectorAll('.runaway');
-            runaways.forEach(btn => {
-                moveButton(btn);
-            });
+        function resetRunawayPosition(btn, topPx) {
+            btn.style.top = topPx + 'px';
+            btn.style.left = '50%';
+            btn.style.transform = 'translateX(-50%)';
         }
 
-        // Screen 2: Dodge Logic for all runaway buttons
+        // Screen 2: Dodge Logic
         function moveButton(btn) {
             playBeep(800, 'sine', 0.05);
             const container = document.getElementById('age-box');
@@ -375,38 +380,43 @@
             btn.style.transform = 'none';
         }
 
-        // Screen 3: Interactive Animated Counter
+        // Screen 3: Interactive Animated Counter (1 -> 19 -> Tears Page at 20)
         function startCounterExperience() {
             playBeep(523, 'sine', 0.2);
             switchScreen('screen2', 'screen3');
             
-            let count = 0;
+            let count = 1;
             const counterElem = document.getElementById('age-counter');
             const statusElem = document.getElementById('counter-status');
+            const screen3 = document.getElementById('screen3');
             
             const interval = setInterval(() => {
                 count++;
                 counterElem.innerText = count;
-                playBeep(300 + count * 25, 'sine', 0.05);
+                playBeep(320 + count * 28, 'sine', 0.06);
 
-                if(count <= 5) statusElem.innerText = "Early stages & childhood blessings... 🍼";
-                else if(count <= 12) statusElem.innerText = "Growing up & building character... ⚡";
-                else if(count <= 18) statusElem.innerText = "Teenage years & epic memories... 🔥";
-                else if(count === 20) statusElem.innerText = "Reaching age 20 milestone! 🎂";
-                else if(count === 25) {
+                if(count <= 5) statusElem.innerText = "Early days & childhood memories... 🍼";
+                else if(count <= 12) statusElem.innerText = "Growing up & shining bright... ⚡";
+                else if(count <= 18) statusElem.innerText = "Teens & building unbreakable bonds... 🔥";
+                else if(count === 19) statusElem.innerText = "Almost at the big milestone... 💖";
+                else if(count === 20) {
                     clearInterval(interval);
-                    statusElem.innerText = "✨ AGE 25 & BEYOND UNLOCKED! ✨";
-                    document.getElementById('counter-next-btn').classList.remove('hidden');
+                    statusElem.innerText = "💥 TEARING UP INTO AGE 20! 💥";
+                    playBeep(1046, 'sawtooth', 0.5);
                     triggerConfetti();
-                    playBeep(880, 'triangle', 0.4);
-                }
-            }, 160);
-        }
 
-        function goToBirthdayWish() {
-            playBeep(600, 'sine', 0.2);
-            switchScreen('screen3', 'screen4');
-            triggerConfetti();
+                    // Trigger Page Tear Effect
+                    setTimeout(() => {
+                        screen3.classList.add('tear-out');
+                        setTimeout(() => {
+                            screen3.classList.add('hidden');
+                            screen3.classList.remove('tear-out');
+                            document.getElementById('screen4').classList.remove('hidden');
+                            triggerConfetti();
+                        }, 750);
+                    }, 400);
+                }
+            }, 220);
         }
 
         function goToCelebration() {
@@ -417,7 +427,7 @@
         function finalPopup(msg) {
             playBeep(900, 'triangle', 0.5);
             triggerConfetti();
-            alert("🔥 BEST FRIEND CONFIRMED 🔥\n\n" + msg + "\n\nHappy Birthday, Irene!");
+            alert("🔥 BEST FRIEND CONFIRMED 🔥\n\n" + msg + "\n\nHappy 20th Birthday, Irene!");
         }
 
         // Ambient Particle Background
@@ -467,15 +477,15 @@
             confettiCanvas.width = window.innerWidth;
             confettiCanvas.height = window.innerHeight;
             const colors = ['#ff7675', '#fd79a8', '#a29bfe', '#ffeaa7', '#55efc4'];
-            for (let i = 0; i < 80; i++) {
+            for (let i = 0; i < 90; i++) {
                 confettiPieces.push({
                     x: canvas.width / 2,
                     y: canvas.height / 2,
-                    vx: (Math.random() - 0.5) * 12,
-                    vy: (Math.random() - 0.5) * 12 - 4,
+                    vx: (Math.random() - 0.5) * 14,
+                    vy: (Math.random() - 0.5) * 14 - 4,
                     size: Math.random() * 8 + 4,
                     color: colors[Math.floor(Math.random() * colors.length)],
-                    life: 100
+                    life: 110
                 });
             }
         }
